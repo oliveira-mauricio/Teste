@@ -1,0 +1,67 @@
+<div class="w-[80%] mx-auto bg-white p-8 rounded-lg shadow-md mt-5">
+    <div class="flex gap-3 justify-between items-center mb-6">
+        <button class="p-2 border rounded-md bg-yellow-50 border-yellow-500 hover:bg-yellow-100" (click)="back()">Voltar</button>
+        <h2 class="text-xl font-bold">Detalhes do Projeto</h2>
+        <div>
+            <button *ngIf="permissions" class="bg-gray-100 border border-gray-700 p-2 rounded-md hover:bg-gray-200" type="button" (click)="add()">Adicionar Tarefa</button>
+        </div>
+    </div>
+    <div class="flex justify-between border rounded-sm p-3 m-2">
+        <div class="flex-1 flex gap-2">
+            <div>
+                <div>
+                    <span>Id: </span><span>{{ projectData.id }}</span>
+                </div>
+                <div>
+                    <span>Nome: </span><span>{{ projectData.name }}</span>
+                </div>
+                <div>
+                    <span>Descrição: </span><span>{{ projectData.description }}</span>
+                </div>
+                <div>
+                    <span>Criado por (Id do usuário): </span><span>{{ projectData.created_by }}</span>
+                </div>
+                <div>
+                    <span>Criado em: </span><span>{{ projectData.created_at | date:'dd/MM/YYYY' }}</span>
+                </div>
+                <div>
+                    <span>Atualizado em: </span><span>{{ projectData.updated_at | date:'dd/MM/YYYY' }}</span>
+                </div>
+                <div>
+                    <span>Quantidade de tarefas: </span><span>{{ projectData.tasks.length }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="projectData.tasks.length > 0">
+        <div class="flex justify-center text-xl font-bold">
+            Tarefas
+        </div>
+        <div *ngFor="let task of projectData.tasks">
+            <div class="flex justify-between border rounded-sm p-3 m-2">
+                <div class="flex-1 flex gap-2">
+                    <div>
+                        <div>
+                            <span>Nome: </span><span>{{ task.name }}</span>
+                        </div>
+                        <div>
+                            <span>Descrição: </span><span>{{ task.description }}</span>
+                        </div>
+                        <div>
+                            <span>Status: </span><span>{{ 
+                                task.status === 'todo' ? 'A Fazer' : 
+                                (task.status === 'in_progress' ? 'Em Progresso' : 
+                                (task.status === 'done' ? 'Concluída' : ''))
+                            }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex gap-2 items-center">
+                    <span class="cursor-pointer hover:underline" (click)="view(task)">Visualizar</span>
+                    <span *ngIf="permissions" class="cursor-pointer hover:underline" (click)="edit(task)">Editar</span>
+                    <span *ngIf="permissions" class="cursor-pointer hover:underline" (click)="delete(task)">Excluir</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

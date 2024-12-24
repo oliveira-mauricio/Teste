@@ -1,0 +1,37 @@
+<div class="bg-gray-200 p-6 min-h-[100vh] min-w-[100vw]">
+    <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl font-bold">Login</h2>
+            <a class="hover:underline" href="/register">Registrar</a>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="email" name="email" formControlName="email" placeholder="Digite seu email"
+                required class="mt-1 block w-full border
+                 border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-400" />
+                <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+                    <small class="text-red-600" *ngIf="form.get('email')?.errors?.['required']">O email é obrigatório.</small>
+                    <small class="text-red-600" *ngIf="form.get('email')?.errors?.['email']">Informe um email válido.</small>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="password" class="block text-sm font-medium text-gray-700">Senha</label>
+                <input type="password" id="password" name="password" formControlName="password" placeholder="Digite sua senha"
+                required class="mt-1 block w-full border
+                 border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-400" />
+                <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+                    <small class="text-red-600" *ngIf="form.get('password')?.errors?.['required']">A senha é obrigatória.</small>
+                </div>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white font-bold py-2 rounded
+             hover:bg-blue-600">Cadastrar</button>
+        </form>
+        <div *ngIf="successMessage">
+            <span class="text-green-600">{{ successMessage }}</span>
+        </div>
+        <div *ngIf="errorMessage">
+            <span class="text-red-600">{{ errorMessage }}</span>
+        </div>
+    </div>
+  </div>

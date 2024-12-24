@@ -1,0 +1,38 @@
+<div class="w-[80%] mx-auto bg-white p-8 rounded-lg shadow-md mt-5">
+    <div class="flex gap-3 justify-between items-center mb-6">
+        <button class="p-2 border rounded-md bg-yellow-50 border-yellow-500 hover:bg-yellow-100" (click)="back()">Voltar</button>
+        <h2 class="text-xl font-bold">Visualização da Tarefa</h2>
+        <div></div>
+    </div>
+    <div class="flex justify-between border rounded-sm p-3 m-2">
+        <div class="flex-1 flex gap-2">
+            <div>
+                <div>
+                    <span>Id: </span><span>{{ taskData.id }}</span>
+                </div>
+                <div>
+                    <span>Nome: </span><span>{{ taskData.name }}</span>
+                </div>
+                <div>
+                    <span>Descrição: </span><span>{{ taskData.description }}</span>
+                </div>
+                <div>
+                    <span>Id do Projeto: </span><span>{{ taskData.project_id }}</span>
+                </div>
+                <div>
+                    <span>Status: </span><span>{{ 
+                        taskData.status === 'todo' ? 'A Fazer' : 
+                        (taskData.status === 'in_progress' ? 'Em Progresso' : 
+                        (taskData.status === 'done' ? 'Concluída' : ''))
+                    }}</span>
+                </div>
+                <div>
+                    <span>Criado em: </span><span>{{ taskData.created_at | date:'dd/MM/YYYY' }}</span>
+                </div>
+                <div>
+                    <span>Atualizado em: </span><span>{{ taskData.updated_at | date:'dd/MM/YYYY' }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="w-[50%] mx-auto bg-white p-8 rounded-lg shadow-md mt-5">
+    <div class="flex items-center justify-between">
+        <button class="p-2 border rounded-md bg-yellow-50 border-yellow-500 hover:bg-yellow-100" (click)="back()">Voltar</button>
+        <h2 class="text-xl font-bold">{{ isEditing ? 'Editar Tarefa' : 'Adicionar Tarefa' }}</h2>
+        <div></div>
+    </div>
+    <div class="p-3 m-2">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="mb-4">
+                <label for="name" class="block text-sm font-medium text-gray-700">Nome</label>
+                <input type="text" id="name" name="name" formControlName="name" placeholder="Digite o nome da tarefa"
+                required class="mt-1 block w-full border
+                    border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-400" />
+                <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+                    <small class="text-red-600" *ngIf="form.get('name')?.errors?.['required']">O nome é obrigatório.</small>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block text-sm font-medium text-gray-700">Descrição</label>
+                <input type="text" id="description" name="description" formControlName="description" placeholder="Digite a descrição da tarefa"
+                required class="mt-1 block w-full border
+                    border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-400" />
+                <div *ngIf="form.get('description')?.invalid && form.get('description')?.touched">
+                    <small class="text-red-600" *ngIf="form.get('description')?.errors?.['required']">A descrição é obrigatória.</small>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+                <select type="text" id="status" name="status" formControlName="status"
+                required class="mt-1 block w-full border
+                    border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-400">
+                    <option value="todo">A Fazer</option>
+                    <option value="in_progress">Em Progresso</option>
+                    <option value="done">Concluída</option>
+                </select>
+                <div *ngIf="form.get('status')?.invalid && form.get('status')?.touched">
+                    <small class="text-red-600" *ngIf="form.get('status')?.errors?.['required']">O status é obrigatório.</small>
+                </div>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white font-bold py-2 rounded
+                hover:bg-blue-600">{{ isEditing ? 'Editar Tarefa' : 'Adicionar Tarefa' }}</button>
+        </form>
+    </div>
+</div>

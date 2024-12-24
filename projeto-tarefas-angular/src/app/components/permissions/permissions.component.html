@@ -1,0 +1,25 @@
+<div class="w-[80%] mx-auto bg-white p-8 rounded-lg shadow-md mt-5">
+    <div class="flex items-center justify-between mb-6">
+        <button class="p-2 border rounded-md bg-yellow-50 border-yellow-500 hover:bg-yellow-100" (click)="back()">Voltar</button>
+        <h2 class="text-xl font-bold">Permissões</h2>
+        <button class="bg-gray-100 border border-gray-700 p-2 rounded-md hover:bg-gray-200" type="button" (click)="save()">Salvar Alterações</button>
+    </div>
+    <form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="p-2 border rounded-sm flex items-center justify-between" *ngFor="let user of users">
+            <div class="w-[30%]">
+                <b>Nome:</b> {{user.name}}
+            </div>
+            <div class="w-[30%]">
+                <b>Permissão:</b> {{user.role}}
+            </div>
+            <div class="w-[30%]">
+                <select type="text" [id]="'user-'+user.id" [name]="'user-'+user.id" [formControlName]="'user-'+user.id"
+                required class="mt-1 block w-full border
+                    border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-400">
+                    <option value="admin">Administrador</option>
+                    <option value="user">Usuário</option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
